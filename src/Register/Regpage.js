@@ -11,6 +11,7 @@ const Regpage = (props) => {
         jobTitle: '', 
         experience: ''
     });
+    const [error, setError] = useState(false);
     
     const handlechange =(e) => {
         let newdata={...data}
@@ -42,15 +43,48 @@ const Regpage = (props) => {
         }
 
     const handlesubmit = (e) => {
-      if(data.name && data.email && data.phone && data.skills && data.jobTitle && data.experience !== ""){
-        console.log("submit");
+      if(!data.name){
         e.preventDefault();
-        formhandler();
-        console.log(data);
-      }else{
-        e.preventDefault();
-        console.log("error");
+        alert("Name is Required")
+        return;
       }
+
+      if(!data.email || !data.email.includes('@') || !data.email.includes('.')){
+        e.preventDefault();
+        alert("Enter valid email")
+        return;
+      }
+
+      if(!data.phone || !(data.phone.length === 10)){
+        e.preventDefault();
+        alert("Phone Length should be 10 digits")
+        return;
+      }
+
+      if(!data.jobTitle){
+        e.preventDefault();
+        alert("Jobtitle is Required")
+        return;
+      }
+
+      if(!data.experience){
+        e.preventDefault();
+        alert("Experience is Required")
+        return;
+      }
+
+      if(!data.skills){
+        e.preventDefault();
+        alert("Skills are Required")
+        return;
+      }
+
+      console.log("submit");
+      e.preventDefault();
+      formhandler();
+      console.log(data);
+
+
      }
 
         return (
@@ -61,7 +95,7 @@ const Regpage = (props) => {
                 <span>Full name</span>
                 <input
                   type="text"
-                  placeholder="Ex. John Doe"
+                  placeholder="John Doe"
                   value={data.name}
                   name="name"
                   onChange={handlechange}
@@ -70,7 +104,7 @@ const Regpage = (props) => {
               <div className="field">
                 <span>Email address</span>
                 <input
-                  type="email"
+                  type="text"
                   placeholder="example@email.com"
                   value={data.email}
                   name="email"
@@ -81,7 +115,7 @@ const Regpage = (props) => {
                 <span>Contact Number</span>
                 <input
                   type="number"
-                  placeholder="+91 9876512345"
+                  placeholder="9876512345"
                   value={data.phone}
                   name="phone"
                   onChange={handlechange}
@@ -89,8 +123,8 @@ const Regpage = (props) => {
               </div>
               <div className="field">
                 <span>Applying for job</span>
-                <select name="jobTitle" onChange={handlechange}>
-                  <option>--select--</option>
+                <select name="jobTitle" value={data.jobTitle} onChange={handlechange}>
+                  <option value="">--select--</option>
                   {
                   props.roles.map((el, id)=>(
                       <option key={id} value={el.value}>{el.label}</option>
@@ -102,7 +136,7 @@ const Regpage = (props) => {
                 <span>Experience</span>
                 <input
                   type="text"
-                  placeholder="Experience(2 years, 3 months)"
+                  placeholder="2 years, 3 months"
                   value={data.experience}
                   name="experience"
                   onChange={handlechange}
@@ -111,7 +145,7 @@ const Regpage = (props) => {
               <div className="field">
                 <span>Technical Skills </span>
                 <textarea
-                  placeholder="Technical Skills"
+                  placeholder="HTML, CSS, Javascript"
                   rows="5"
                   cols="40"
                   value={data.skills}

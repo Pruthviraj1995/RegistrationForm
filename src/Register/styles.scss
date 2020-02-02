@@ -4,12 +4,13 @@
     padding: 10px;  
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
 
     .header{
         font-size: 2rem;
         font-weight: 600;
         padding-left: 1.5rem;
+        color: white;
     }
 }
 
@@ -22,7 +23,7 @@
 
 .regPage{
     border: 1px solid;
-    width: 50vw;
+    width: 40vw;
     margin: 1.5rem;
     display: flex;
     flex-direction: column;
@@ -78,7 +79,7 @@
 .adminDash{
     // border: 1px solid;
     background-color: white;
-    margin: 1.5rem;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
 
@@ -98,6 +99,7 @@
     .filter{
         display: flex;
         justify-content: space-between;
+        cursor: pointer;
 
         &>div{
             padding: 0.5rem;
@@ -209,6 +211,7 @@
     width: fit-content;
     display: flex;
     justify-content: center;
+    cursor: pointer;
 
     &:hover{
         background-color: rgb(79, 124, 163);

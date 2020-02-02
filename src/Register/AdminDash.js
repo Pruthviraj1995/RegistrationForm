@@ -6,7 +6,7 @@ import axios from 'axios';
 const AdminDash = (props) => {
 
     const [list, setList] = useState([]);
-    const [role, setRole] = useState({});
+    const [role, setRole] = useState(props.roles[0]);
     // const [bool, setBool] = useState(true);
 
     // const currentdate = () => {
